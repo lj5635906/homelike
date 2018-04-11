@@ -1,0 +1,14 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>homelike-modules</artifactId>
+        <groupId>com.homelike</groupId>
+        <version>${homelike.version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>homelike-merchant</artifactId>
+    <packaging>pom</packaging>
+    <name>homelike-merchant</name>
+
+</project>
