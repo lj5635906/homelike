@@ -96,6 +96,12 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
         <!-- 链路追踪    end -->
+        <!-- swagger     start  -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <!-- swagger     end -->
     </dependencies>
 
     <build>

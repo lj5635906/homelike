@@ -2,6 +2,7 @@ package com.homelike.order.common.request;
 
 import com.homelike.common.web.valid.ListValid;
 import com.homelike.common.web.valid.LongGreaterThanZeroValid;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -19,11 +20,13 @@ public class CreateOrderRequest {
     /**
      * 买家用户id
      */
+    @ApiModelProperty("买家用户id")
     @LongGreaterThanZeroValid(message = "买家用户id")
     private Long customerId;
     /**
      * 买家地址id
      */
+    @ApiModelProperty("买家地址id")
     @LongGreaterThanZeroValid(message = "买家地址id")
     private Long customerShoppingAddressId;
     /**
@@ -31,6 +34,7 @@ public class CreateOrderRequest {
      */
     @Valid // 开启对 CreateOrderCarRequest 参数的校验
     @ListValid(message = "购物车", groups = CreateOrderCarRequest.class)
+    @ApiModelProperty("购物车")
     private List<CreateOrderCarRequest> cars;
 
 }

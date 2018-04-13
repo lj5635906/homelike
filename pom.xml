@@ -43,6 +43,7 @@
         <homelike.version>1.0-SNAPSHOT</homelike.version>
         <lombok.version>1.16.20</lombok.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+        <swagger.version>2.7.0</swagger.version>
     </properties>
 
     <dependencyManagement>
@@ -64,6 +65,16 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
