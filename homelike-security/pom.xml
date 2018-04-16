@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>homelike</artifactId>
+        <groupId>com.homelike</groupId>
+        <version>${homelike.version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>homelike-security</artifactId>
+    <name>homelike-security</name>
+    <modules>
+        <module>homelike-security-core</module>
+        <module>homelike-security-demo</module>
+    </modules>
+    <packaging>pom</packaging>
+
+</project>

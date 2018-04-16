@@ -12,6 +12,7 @@
         <module>homelike-modules</module>
         <module>homelike-gateway</module>
         <module>homelike-registry</module>
+        <module>homelike-security</module>
     </modules>
 
     <!--<distributionManagement>
