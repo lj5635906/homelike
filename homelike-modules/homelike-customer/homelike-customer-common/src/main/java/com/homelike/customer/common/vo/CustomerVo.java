@@ -23,5 +23,13 @@ public class CustomerVo {
      * 客户电话号码
      */
     private String customerMobile;
+    /**
+     * 别名
+     */
+    private String customerAlias;
+    /**
+     * 密码
+     */
+    private String customerPassword;
 
 }

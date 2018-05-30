@@ -1,9 +1,10 @@
 package com.homelike.customer.client;
 
 import com.homelike.common.web.vo.ResultVo;
-import com.homelike.customer.common.request.CustomerLoginRequest;
 import com.homelike.customer.common.request.SendSmsRequest;
+import com.homelike.customer.common.vo.CustomerVo;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,14 +34,24 @@ public interface CustomerClient {
     ResultVo sendSms(@Valid @RequestBody SendSmsRequest request);
 
     /**
-     * 登陆
+     * 根据用户名获取详情
      *
-     * @param request CustomerLoginRequest
+     * @param name 用户名
+     * @return ResultVo<CustomerVo>
      */
-    @PostMapping(CUSTOMER_PREFIX + "/login")
-    ResultVo login(@Valid @RequestBody CustomerLoginRequest request);
+    @PostMapping(CUSTOMER_PREFIX + "/name/{name}")
+    ResultVo<CustomerVo> findCustomerByName(@PathVariable(name = "name") String name);
 
-    class CustomerClientFallback implements CustomerClient{
+    /**
+     * 根据电话号码获取详情
+     *
+     * @param mobile 电话号码
+     * @return ResultVo<CustomerVo>
+     */
+    @PostMapping(CUSTOMER_PREFIX + "/mobile/{mobile}")
+    ResultVo<CustomerVo> findCustomerByMobile(@PathVariable(name = "mobile") String mobile);
+
+    class CustomerClientFallback implements CustomerClient {
 
         @Override
         public ResultVo sendSms(SendSmsRequest request) {
@@ -48,8 +59,14 @@ public interface CustomerClient {
         }
 
         @Override
-        public ResultVo login(CustomerLoginRequest request) {
+        public ResultVo<CustomerVo> findCustomerByName(String name) {
             return ResultVo.hystrix();
         }
+
+        @Override
+        public ResultVo<CustomerVo> findCustomerByMobile(String mobile) {
+            return ResultVo.hystrix();
+        }
+
     }
 }

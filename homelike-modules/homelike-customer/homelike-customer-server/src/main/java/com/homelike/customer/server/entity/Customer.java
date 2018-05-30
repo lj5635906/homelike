@@ -32,6 +32,14 @@ public class Customer {
      */
     private String customerMobile;
     /**
+     * 别名
+     */
+    private String customerAlias;
+    /**
+     * 密码
+     */
+    private String customerPassword;
+    /**
      * 创建时间
      */
     private Date createTime;

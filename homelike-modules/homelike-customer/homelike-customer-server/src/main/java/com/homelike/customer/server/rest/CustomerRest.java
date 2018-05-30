@@ -1,15 +1,11 @@
 package com.homelike.customer.server.rest;
 
 import com.homelike.common.web.vo.ResultVo;
-import com.homelike.customer.common.request.CustomerLoginRequest;
 import com.homelike.customer.common.request.SendSmsRequest;
 import com.homelike.customer.common.vo.CustomerVo;
 import com.homelike.customer.server.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -39,13 +35,32 @@ public class CustomerRest {
     }
 
     /**
-     * 登陆
-     * @param request CustomerLoginRequest
+     * 根据用户名获取详情
+     *
+     * @param name 用户名
+     * @return ResultVo<CustomerVo>
      */
-    @PostMapping("/login")
-    public ResultVo login(@Valid @RequestBody CustomerLoginRequest request){
-        CustomerVo customerVo = customerService.login(request.getMobile(),request.getCode());
+    @PostMapping("/name/{name}")
+    public ResultVo<CustomerVo> findCustomerByName(@PathVariable(name = "name") String name) {
+        CustomerVo customerVo = customerService.findCustomerByName(name);
+        if (null == customerVo){
+            return ResultVo.dataEmpty();
+        }
         return ResultVo.ok(customerVo);
     }
 
+    /**
+     * 根据电话号码获取详情
+     *
+     * @param mobile 电话号码
+     * @return ResultVo<CustomerVo>
+     */
+    @PostMapping("/mobile/{mobile}")
+    public ResultVo<CustomerVo> findCustomerByMobile(@PathVariable(name = "mobile") String mobile) {
+        CustomerVo customerVo = customerService.findCustomerByMobile(mobile);
+        if (null == customerVo){
+            return ResultVo.dataEmpty();
+        }
+        return ResultVo.ok(customerVo);
+    }
 }

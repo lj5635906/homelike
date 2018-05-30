@@ -57,43 +57,21 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void verifyCode(String mobile, String code, int type) {
-        String dbCode = null;
-        LocalDateTime expireTime = null;
-        if (VerifyCodeType.login.getCode().intValue() == type) {
-            CustomerVerifyCode customerVerifyCode = customerVerifyCodeRepository.findFirstByMobileAndCodeTypeOrderByCreateTimeDesc(mobile, type);
-            // 是否请求验证码
-            if (null == customerVerifyCode) {
-                throw new CustomException(CustomerCode.VerifyIsEmpty.getCode(), CustomerCode.VerifyIsEmpty.getMessage());
-            }
-            expireTime = customerVerifyCode.getExpireTime();
-            dbCode = customerVerifyCode.getVerifyCode();
-        } else {
-            throw new CustomException(CustomerCode.VerifyTypeNoSupport.getCode(), CustomerCode.VerifyTypeNoSupport.getMessage());
+    public CustomerVo findCustomerByName(String name) {
+        Customer customer = customerRepository.findCustomerByCustomerName(name);
+        if (null == customer){
+            return null;
         }
-
-        // 验证码是否错误
-        if (!dbCode.equals(code)) {
-            throw new CustomException(CustomerCode.VerifyError.getCode(), CustomerCode.VerifyError.getMessage());
-        }
-
-        // 验证码是否过期
-        boolean isExpire = LocalDateTime.now().isAfter(expireTime);
-        if (isExpire) {
-            throw new CustomException(CustomerCode.VerifyExpire.getCode(), CustomerCode.VerifyExpire.getMessage());
-        }
+        CustomerVo customerVo = new CustomerVo();
+        BeanUtils.copyProperties(customer,customerVo);
+        return customerVo;
     }
 
     @Override
-    public CustomerVo login(String mobile, String code) {
-        // 验证验证码
-        this.verifyCode(mobile, code, VerifyCodeType.login.getCode());
-
-        // 获取客户信息
+    public CustomerVo findCustomerByMobile(String mobile) {
         Customer customer = customerRepository.findCustomerByCustomerMobile(mobile);
-        if (null == customer) {
-            //TODO 客户信息不存在-注册？
-            throw new CustomException(CustomerCode.CustomerUnExist.getCode(), CustomerCode.CustomerUnExist.getMessage());
+        if (null == customer){
+            return null;
         }
         CustomerVo customerVo = new CustomerVo();
         BeanUtils.copyProperties(customer,customerVo);

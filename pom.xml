@@ -13,6 +13,7 @@
         <module>homelike-gateway</module>
         <module>homelike-registry</module>
         <module>homelike-security</module>
+        <module>homelike-auth</module>
     </modules>
 
     <!--<distributionManagement>

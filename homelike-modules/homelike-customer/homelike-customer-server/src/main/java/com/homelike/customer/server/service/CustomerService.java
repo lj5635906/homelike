@@ -21,19 +21,19 @@ public interface CustomerService {
     void sendCode(String mobile, int type);
 
     /**
-     * 验证验证码
+     * 根据客户名获取详情
      *
-     * @param mobile 手机号码
-     * @param code   验证码
-     * @param type   验证码类型
-     */
-    void verifyCode(String mobile, String code, int type);
-
-    /**
-     * 客户登陆
-     * @param mobile 电话号码
-     * @param code 验证码
+     * @param name 名
      * @return CustomerVo
      */
-    CustomerVo login(String mobile,String code);
+    CustomerVo findCustomerByName(String name);
+
+    /**
+     * 根据电话号码获取详情
+     *
+     * @param mobile 电话号码
+     * @return CustomerVo
+     */
+    CustomerVo findCustomerByMobile(String mobile);
+
 }

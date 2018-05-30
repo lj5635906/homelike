@@ -3,13 +3,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>homelike-security</artifactId>
+        <artifactId>homelike-modules</artifactId>
         <groupId>com.homelike</groupId>
-        <version>${homelike.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>homelike-security-demo</artifactId>
-    <packaging>jar</packaging>
+
+    <artifactId>homelike-sso-client</artifactId>
+
+    <name>homelike-sso-client</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
 
     <dependencies>
         <dependency>
@@ -25,18 +29,9 @@
             <artifactId>spring-security-jwt</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
     </dependencies>
 
-    <build>
-        <finalName>homelike-security-demo.jar</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

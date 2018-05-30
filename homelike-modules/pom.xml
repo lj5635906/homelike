@@ -15,6 +15,7 @@
         <module>homelike-merchant</module>
         <module>homelike-product</module>
         <module>homelike-order</module>
+        <module>homelike-sso-client</module>
     </modules>
 
 </project>

@@ -10,12 +10,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @email 190642964@qq.com
  * @create 2018-04-08 14:52
  **/
-public interface CustomerRepository extends JpaRepository<Customer,Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     /**
      * 根据电话号码获取客户
+     *
      * @param mobile 电话号码
      * @return Customer
      */
     Customer findCustomerByCustomerMobile(String mobile);
+
+    /**
+     * 根据名称获取客户
+     *
+     * @param name 名称
+     * @return Customer
+     */
+    Customer findCustomerByCustomerName(String name);
 }
