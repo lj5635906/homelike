@@ -14,9 +14,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @create 2018-04-19 14:42
  **/
 @SpringBootApplication
-@EnableDiscoveryClient
-@ComponentScan({"com.homelike.common.web.handler","com.homelike.customer.client"})
-@EnableFeignClients(basePackages = {"com.homelike.customer.client"})
 public class AuthApplication {
 
     public static void main(String[] args) {

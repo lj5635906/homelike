@@ -120,6 +120,20 @@ public class ResultVo<T> {
         return result;
     }
 
+
+    /**
+     * 自定义响应数据
+     *
+     * @param message 响应提示信息
+     * @return ResultVo
+     */
+    public static ResultVo custom(String message) {
+        ResultVo result = new ResultVo();
+        result.setCode(HttpCustomStatus.ServerError.getCode());
+        result.setMessage(message);
+        return result;
+    }
+
     /**
      * 自定义响应数据
      *

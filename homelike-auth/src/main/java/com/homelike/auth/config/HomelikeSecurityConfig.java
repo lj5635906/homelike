@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * homelike Spring Security 相关配置
@@ -22,7 +24,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class HomelikeSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private AnonProperties anonProperties;
+    @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private AuthenticationSuccessHandler securityAuthenticationSuccessHandler;
+    @Autowired
+    private AuthenticationFailureHandler securityAuthenticationFailureHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -35,10 +43,23 @@ public class HomelikeSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                .and()
+                // 需要身份认证时跳转的URL
+                .loginPage("/authentication/require")
+                // 自定义登陆请求
+                .loginProcessingUrl("/authentication/form")
+                .successHandler(securityAuthenticationSuccessHandler)
+                .failureHandler(securityAuthenticationFailureHandler);
+
+        http
                 .authorizeRequests()
+                .antMatchers(anonProperties.getAnon().toArray(new String[]{}))
+                .permitAll()
                 .anyRequest()
                 .authenticated();
+
+        http
+                .csrf()
+                .disable();
     }
 
     @Bean
